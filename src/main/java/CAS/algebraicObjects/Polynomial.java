@@ -8,7 +8,10 @@ import CAS.operations.PolynomialOperations;
  * computation of polynomials, including their roots and the associated arithmetic is stored in the
  * <code>PolynomialOperations</code> class.
  *
+ * See <a href="https://en.wikipedia.org/wiki/Polynomial">Polynomial</a>
+ *
  * @see PolynomialOperations
+ * @author Luvai Cutlerywala
  */
 public class Polynomial {
 
