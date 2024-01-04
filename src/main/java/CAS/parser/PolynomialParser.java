@@ -9,7 +9,7 @@ public class PolynomialParser implements Parser<Polynomial> {
     }
 
     @Override
-    public Polynomial generateObject() {
+    public Object getRepresentation() {
         return null;
     }
 }

@@ -9,7 +9,7 @@ public class VectorParser implements Parser<Vector> {
     }
 
     @Override
-    public Vector generateObject() {
+    public Object getRepresentation() {
         return null;
     }
 }
