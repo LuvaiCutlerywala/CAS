@@ -11,6 +11,7 @@ import java.util.HashMap;
  *
  * @see CAS.operations.PolynomialOperations
  * @author Luvai Cutlerywala
+ * @version 1.0
  */
 public class Polynomial {
 
@@ -28,7 +29,6 @@ public class Polynomial {
      *
      * @param degree The degree of the associated term.
      * @return The coefficient of the term with the degree of the argument.
-     * @author Luvai Cutlerywala
      */
     public double getCoefficient(int degree){
         Double coefficient = coefficients.get(degree);
@@ -45,7 +45,6 @@ public class Polynomial {
      *
      * @param degree The degree of the associated term.
      * @param coefficient The coefficient of the associated term.
-     * @author Luvai Cutlerywala
      */
     public void setCoefficient(int degree, double coefficient){
         if(coefficients.containsKey(degree)){
