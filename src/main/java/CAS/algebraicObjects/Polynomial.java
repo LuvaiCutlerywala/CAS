@@ -1,7 +1,6 @@
 package CAS.algebraicObjects;
 
 import java.util.HashMap;
-import CAS.operations.PolynomialOperations;
 
 /**
  * A class to represent the polynomial. It supports methods for accessing polynomials, however the actual logic of the
@@ -10,7 +9,7 @@ import CAS.operations.PolynomialOperations;
  *
  * See <a href="https://en.wikipedia.org/wiki/Polynomial">Polynomial</a>
  *
- * @see PolynomialOperations
+ * @see CAS.operations.PolynomialOperations
  * @author Luvai Cutlerywala
  */
 public class Polynomial {
