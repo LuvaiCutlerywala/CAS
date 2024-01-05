@@ -2,8 +2,7 @@ package CAS.parser;
 
 import CAS.algebraicObjects.Matrix;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 /**
  * Extracts the matrix data from the provided string representation, and then generates a structure
@@ -26,18 +25,31 @@ public class MatrixParser implements Parser<Matrix> {
 
     @Override
     public void parse(String input) {
-        int rows, columns;
+        String str = "((1, 2, 3), (4, 5, 6), (7, 8, 9))";
+        String replacedString = str.replaceAll("\\(", "");
+        String[] rows = replacedString.split("\\)");
+        ArrayList<Object[]> elements = new ArrayList<>();
+        for (String row : rows) {
+            String[] temp = row.split(",");
+            ArrayList<String> array = new ArrayList<>();
+            for (String s : temp) {
+                if (!s.isBlank()) {
+                    array.add(s.strip());
+                }
+            }
+            elements.add(array.toArray());
+        }
 
+        this.matrix = new double[elements.size()][elements.get(0).length];
+        for(int i = 0; i < matrix.length; ++i){
+            for(int j = 0; j < matrix[i].length; ++j){
+                this.matrix[i][j] = Double.parseDouble((String) elements.get(i)[j]);
+            }
+        }
     }
 
     @Override
-    public Object getRepresentation() {
-        return null;
-    }
-
-    private int numberOfMatches(Matcher matcher){
-        int count = 0;
-        for(; matcher.find(); ++count);
-        return count;
+    public double[][] getRepresentation() {
+        return this.matrix;
     }
 }
