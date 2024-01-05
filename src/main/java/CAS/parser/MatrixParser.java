@@ -23,12 +23,6 @@ public class MatrixParser implements Parser<Matrix> {
 
     private final ArrayList<Object[]> elements = new ArrayList<>();
 
-    public MatrixParser(){}
-
-    public MatrixParser(String input){
-        parse(input);
-    }
-
     @Override
     public void parse(String input) {
 

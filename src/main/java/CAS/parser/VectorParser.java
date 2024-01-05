@@ -22,12 +22,6 @@ public class VectorParser implements Parser<Vector> {
 
     private double[] vector;
 
-    public VectorParser(){}
-
-    public VectorParser(String input){
-        parse(input);
-    }
-
     @Override
     public void parse(String input) {
         String[] components = input.strip().replaceAll("\\(", "")

@@ -5,20 +5,24 @@ import CAS.algebraicObjects.Polynomial;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
- * Extracts the
+ * Extracts the polynomial data from the provided string representation, and then generates a structure
+ * preserving object that holds the data before it is passed to associated type of the algebraic object. The grammar for
+ * a polynomial string representation is as such:
+ *          15x^4 + 12x^3 + 9x^2 + 6x + 3
+ * Where each of the x-terms are representative of the term in the polynomial of that degree. The coefficients are
+ * always in the front, and the polynomial is always represented in the form shown above. Although, terms that have a
+ * leading coefficient of 1 need not include the actual coefficient, as is convention. Also, any term that has a 0
+ * coefficient need not be included, as also is convention. Addition is commutative and associative, the terms can
+ * also be written in any order, as it is mathematically accurate.
+ *
+ * @author Luvai Cutlerywala
+ * @version 1.0
  */
 public class PolynomialParser implements Parser<Polynomial> {
 
     private final HashMap<Integer, Double> coefficients = new HashMap<>();
-
-    public PolynomialParser(){}
-
-    public PolynomialParser(String input){
-        parse(input);
-    }
 
     @Override
     public void parse(String input) {
