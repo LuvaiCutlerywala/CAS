@@ -6,8 +6,8 @@
 |---------------------------------------------------------------------------|-------------|
 | Adding representation objects for polynomials                             | Yes         |
 | Parsing string representation of polynomials                              | No          |
-| Parsing string representation of matrices                                 | No |
-| Parsing string representation of vectors                                  | No |
+| Parsing string representation of matrices                                 | Yes         |
+| Parsing string representation of vectors                                  | Yes         |
 | Solving linear equations                                                  | No          |
 | Solving quadratic equations                                               | No          |
 | Solving cubic equations                                                   | No          |

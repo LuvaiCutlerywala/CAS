@@ -21,35 +21,39 @@ import java.util.ArrayList;
  */
 public class MatrixParser implements Parser<Matrix> {
 
-    private double[][] matrix;
+    private final ArrayList<Object[]> elements = new ArrayList<>();
 
     @Override
     public void parse(String input) {
-        String str = "((1, 2, 3), (4, 5, 6), (7, 8, 9))";
-        String replacedString = str.replaceAll("\\(", "");
-        String[] rows = replacedString.split("\\)");
-        ArrayList<Object[]> elements = new ArrayList<>();
+
+        if(elements.size() != 0){
+            elements.subList(0, elements.size()).clear();
+        }
+
+        String replacedString = input.replaceAll("\\(", ""); //Removes all the leading opening brackets making it easier to parse
+        String[] rows = replacedString.split("\\)"); //Splits the string into the row strings.
         for (String row : rows) {
-            String[] temp = row.split(",");
+            String[] temp = row.split(","); //Splits the rows into individual elements.
             ArrayList<String> array = new ArrayList<>();
             for (String s : temp) {
                 if (!s.isBlank()) {
-                    array.add(s.strip());
+                    array.add(s.strip()); //Only adds the newly split elements  if they are not blank, prevents addition of extra empty space elements.
                 }
             }
-            elements.add(array.toArray());
-        }
-
-        this.matrix = new double[elements.size()][elements.get(0).length];
-        for(int i = 0; i < matrix.length; ++i){
-            for(int j = 0; j < matrix[i].length; ++j){
-                this.matrix[i][j] = Double.parseDouble((String) elements.get(i)[j]);
-            }
+            elements.add(array.toArray()); //Adds row to matrix representation.
         }
     }
 
     @Override
     public double[][] getRepresentation() {
-        return this.matrix;
+        //Converts to internal matrix representation to more useful form for user.
+        double[][] matrix = new double[elements.size()][elements.get(0).length];
+        for(int i = 0; i < matrix.length; ++i){
+            for(int j = 0; j < matrix[i].length; ++j){
+                matrix[i][j] = Double.parseDouble((String) elements.get(i)[j]);
+            }
+        }
+
+        return matrix;
     }
 }
