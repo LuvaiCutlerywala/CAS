@@ -1,10 +1,10 @@
 package CAS.algebraicObjFactory;
 
-public class AlgebraicObjectFactory {
+public class AlgebraicObjectFactory implements AlgebraicObjFactory{
 
-    public static <T> T generateAlgebraicObject(T type, String input){
-        return new AlgebraicObjFactory<T>().generateObject(input);
+
+    @Override
+    public Object generateObject(String input) {
+        return null;
     }
-
-
 }

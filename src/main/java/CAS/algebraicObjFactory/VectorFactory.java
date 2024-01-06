@@ -1,5 +1,7 @@
 package CAS.algebraicObjFactory;
 
+import CAS.algebraicObjects.Vector;
+
 /**
  * The grammar defined for the string representation of a vector is as follows:
  * (1, 2, 3, 4)
@@ -15,5 +17,9 @@ package CAS.algebraicObjFactory;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class VectorFactory {
+public class VectorFactory{
+
+    public Vector generateObject(String input) {
+        return null;
+    }
 }

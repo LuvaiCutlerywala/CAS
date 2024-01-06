@@ -1,5 +1,7 @@
 package CAS.algebraicObjFactory;
 
+import CAS.algebraicObjects.Matrix;
+
 /**
  * The grammar, as defined for the string representation of a matrix is:
  *      ((1, 2, 3), (4, 5, 6), (7, 8, 9))
@@ -14,7 +16,10 @@ package CAS.algebraicObjFactory;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class MatrixFactory {
+public class MatrixFactory{
 
 
+    public Matrix generateObject(String input) {
+        return null;
+    }
 }

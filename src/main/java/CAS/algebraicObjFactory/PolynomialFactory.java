@@ -1,5 +1,7 @@
 package CAS.algebraicObjFactory;
 
+import CAS.algebraicObjects.Polynomial;
+
 /**
  * The grammar defined for the string representation for a polynomial is as follows:
  *      15x^4 + 12x^3 + 9x^2 + 6x + 3
@@ -13,5 +15,8 @@ package CAS.algebraicObjFactory;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class PolynomialFactory {
+public class PolynomialFactory{
+    public Polynomial generateObject(String input) {
+        return null;
+    }
 }
