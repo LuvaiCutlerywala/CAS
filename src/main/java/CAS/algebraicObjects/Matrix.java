@@ -13,7 +13,7 @@ import CAS.utils.Tuple;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Matrix {
+public class Matrix implements AlgebraicObject{
 
     private final Tuple<Integer, Integer> dim;
     private final double[][] matrix;
@@ -24,7 +24,7 @@ public class Matrix {
      * @param dim The dimensions of the matrix
      * @param matrix The matrix with values.
      */
-    protected Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
+    public Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
         if(dim.getA() <= 0 || dim.getB() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be 0.");
         }
@@ -37,7 +37,7 @@ public class Matrix {
      *
      * @param dim The dimensions of the matrix.
      */
-    protected Matrix(Tuple<Integer, Integer> dim){
+    public Matrix(Tuple<Integer, Integer> dim){
         if(dim.getB() <= 0 || dim.getA() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be zero.");
         }

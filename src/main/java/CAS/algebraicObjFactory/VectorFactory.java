@@ -1,6 +1,7 @@
 package CAS.algebraicObjFactory;
 
 import CAS.algebraicObjects.Vector;
+import CAS.parser.VectorParser;
 
 /**
  * The grammar defined for the string representation of a vector is as follows:
@@ -19,7 +20,11 @@ import CAS.algebraicObjects.Vector;
  */
 public class VectorFactory{
 
-    public Vector generateObject(String input) {
-        return null;
+    static Vector generateObject(String input) {
+        VectorParser parser = new VectorParser();
+        parser.parse(input);
+        double[] vector = parser.getRepresentation();
+
+        return new Vector(vector.length, vector);
     }
 }

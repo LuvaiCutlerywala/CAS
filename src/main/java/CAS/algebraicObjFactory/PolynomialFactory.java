@@ -1,6 +1,11 @@
 package CAS.algebraicObjFactory;
 
 import CAS.algebraicObjects.Polynomial;
+import CAS.parser.PolynomialParser;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * The grammar defined for the string representation for a polynomial is as follows:
@@ -16,7 +21,18 @@ import CAS.algebraicObjects.Polynomial;
  * @version 1.0
  */
 public class PolynomialFactory{
-    public Polynomial generateObject(String input) {
-        return null;
+    static Polynomial generateObject(String input) {
+        PolynomialParser parser = new PolynomialParser();
+        parser.parse(input);
+        HashMap<Integer, Double> map = parser.getRepresentation();
+
+        return new Polynomial(getPolynomialDegree(map.keySet()), map);
+    }
+
+    private static int getPolynomialDegree(Set<Integer> degrees){
+        Integer[] arr = new Integer[degrees.size()];
+        degrees.toArray(arr);
+        Arrays.sort(arr);
+        return arr[arr.length - 1];
     }
 }

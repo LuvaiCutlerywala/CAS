@@ -1,6 +1,8 @@
 package CAS.algebraicObjFactory;
 
 import CAS.algebraicObjects.Matrix;
+import CAS.parser.MatrixParser;
+import CAS.utils.Tuple;
 
 /**
  * The grammar, as defined for the string representation of a matrix is:
@@ -16,10 +18,13 @@ import CAS.algebraicObjects.Matrix;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class MatrixFactory{
+public class MatrixFactory {
 
+    static Matrix generateObject(String input) {
+        MatrixParser parser = new MatrixParser();
+        parser.parse(input);
+        double[][] matrixRepresentation = parser.getRepresentation();
 
-    public Matrix generateObject(String input) {
-        return null;
+        return new Matrix(new Tuple<>(matrixRepresentation.length, matrixRepresentation[0].length), matrixRepresentation);
     }
 }

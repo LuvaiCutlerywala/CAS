@@ -13,12 +13,12 @@ import java.util.HashMap;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Polynomial {
+public class Polynomial implements AlgebraicObject{
 
     private final HashMap<Integer, Double> coefficients;
     private final int maxDegree;
 
-    protected Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
+    public Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
         this.coefficients = coefficients;
         this.maxDegree = maxDegree;
     }

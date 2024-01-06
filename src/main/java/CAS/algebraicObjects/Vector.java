@@ -11,7 +11,7 @@ package CAS.algebraicObjects;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Vector{
+public class Vector implements AlgebraicObject{
 
     private final int dim;
     private final double[] vector;
@@ -22,7 +22,7 @@ public class Vector{
      * @param dim The dimension of the vector.
      * @param vector The vector with values.
      */
-    protected Vector(int dim, double[] vector){
+    public Vector(int dim, double[] vector){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be zero.");
         }
@@ -35,7 +35,7 @@ public class Vector{
      *
      * @param dim The dimension of the vector.
      */
-    protected Vector(int dim){
+    public Vector(int dim){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be specified.");
         }

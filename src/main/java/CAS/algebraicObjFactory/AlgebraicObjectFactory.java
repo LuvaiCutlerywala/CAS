@@ -1,10 +1,17 @@
 package CAS.algebraicObjFactory;
 
-public class AlgebraicObjectFactory implements AlgebraicObjFactory{
+import CAS.algebraicObjects.AlgebraicObject;
 
+public class AlgebraicObjectFactory {
 
-    @Override
-    public Object generateObject(String input) {
-        return null;
+    public static AlgebraicObject generateObject(String input){
+        if(input.contains("^")){
+            return PolynomialFactory.generateObject(input);
+        } else if(input.contains("((") && input.contains("))")){
+            return MatrixFactory.generateObject(input);
+        }
+
+        return VectorFactory.generateObject(input);
     }
+
 }
