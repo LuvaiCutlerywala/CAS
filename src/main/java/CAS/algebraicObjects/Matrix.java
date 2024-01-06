@@ -1,5 +1,6 @@
 package CAS.algebraicObjects;
 
+import CAS.parser.MatrixParser;
 import CAS.utils.Tuple;
 
 /**
@@ -13,7 +14,7 @@ import CAS.utils.Tuple;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Matrix implements AlgebraicObject{
+public class Matrix{
 
     private final Tuple<Integer, Integer> dim;
     private final double[][] matrix;
@@ -69,6 +70,28 @@ public class Matrix implements AlgebraicObject{
             throw new IllegalArgumentException("Element specified does not exist.");
         }
         matrix[index.getA() - 1][index.getB() - 1] = element;
+    }
+
+    /**
+     * The grammar, as defined for the string representation of a matrix is:
+     *      ((1, 2, 3), (4, 5, 6), (7, 8, 9))
+     * Where the initial set of brackets represents actual matrix. The inner brackets, which wrap around each list of
+     * numbers, represent the row of the matrix. The numbers themselves are the individual columns of the associated
+     * row. Therefore, the string representation, as given above, would yield a matrix in the form:
+     *               1   2   3
+     *               4   5   6
+     *               7   8   9
+     *
+     * @see CAS.parser.MatrixParser
+     * @param input The string representation of the matrix.
+     * @return The matrix object representing the matrix in question.
+     */
+    public static Matrix generateObject(String input) {
+        MatrixParser parser = new MatrixParser();
+        parser.parse(input);
+        double[][] matrixRepresentation = parser.getRepresentation();
+
+        return new Matrix(new Tuple<>(matrixRepresentation.length, matrixRepresentation[0].length), matrixRepresentation);
     }
 
 }

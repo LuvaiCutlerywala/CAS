@@ -1,5 +1,8 @@
 package CAS.algebraicObjects;
 
+import CAS.parser.PolynomialParser;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -13,12 +16,12 @@ import java.util.HashMap;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Polynomial implements AlgebraicObject{
+public class Polynomial{
 
     private final HashMap<Integer, Double> coefficients;
     private final int maxDegree;
 
-    public Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
+    private Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
         this.coefficients = coefficients;
         this.maxDegree = maxDegree;
     }
@@ -70,6 +73,31 @@ public class Polynomial implements AlgebraicObject{
      */
     public int getPolynomialDegree(){
         return maxDegree;
+    }
+
+    /**
+     * The grammar defined for the string representation for a polynomial is as follows:
+     *      15x^4 + 12x^3 + 9x^2 + 6x + 3
+     * Where each of the x-terms are representative of the term in the polynomial of that degree. The coefficients are
+     * always in the front, and the polynomial is always represented in the form shown above. Although, terms that have a
+     * leading coefficient of 1 need not include the actual coefficient, as is convention. Also, any term that has a 0
+     * coefficient need not be included, as also is convention. Addition is commutative and associative, the terms can
+     * also be written in any order, as it is mathematically accurate.
+     *
+     * @see CAS.parser.PolynomialParser
+     * @param input The string representation of the polynomial.
+     * @return A polynomial object representing the polynomial in question.
+     */
+    public static Polynomial generateObject(String input) {
+        PolynomialParser parser = new PolynomialParser();
+        parser.parse(input);
+        HashMap<Integer, Double> map = parser.getRepresentation();
+
+        Integer[] arr = new Integer[map.keySet().size()];
+        map.keySet().toArray(arr);
+        Arrays.sort(arr);
+
+        return new Polynomial(arr[arr.length - 1], map);
     }
 
 }

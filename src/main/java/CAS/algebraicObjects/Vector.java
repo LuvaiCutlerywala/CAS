@@ -1,5 +1,7 @@
 package CAS.algebraicObjects;
 
+import CAS.parser.VectorParser;
+
 /**
  * A class representing the vector. It supports methods for accessing vectors, however the actual logic of the
  * computation of vectors, including the associated arithmetic and inner product, outer product, and cross product are
@@ -11,7 +13,7 @@ package CAS.algebraicObjects;
  * @author Luvai Cutlerywala
  * @version 1.0
  */
-public class Vector implements AlgebraicObject{
+public class Vector{
 
     private final int dim;
     private final double[] vector;
@@ -22,7 +24,7 @@ public class Vector implements AlgebraicObject{
      * @param dim The dimension of the vector.
      * @param vector The vector with values.
      */
-    public Vector(int dim, double[] vector){
+    private Vector(int dim, double[] vector){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be zero.");
         }
@@ -35,7 +37,7 @@ public class Vector implements AlgebraicObject{
      *
      * @param dim The dimension of the vector.
      */
-    public Vector(int dim){
+    private Vector(int dim){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be specified.");
         }
@@ -69,5 +71,28 @@ public class Vector implements AlgebraicObject{
         }
 
         vector[index - 1] = component;
+    }
+
+    /**
+     * The grammar defined for the string representation of a vector is as follows:
+     * (1, 2, 3, 4)
+     * Where the initial set of brackets represents the vector matrix. The numbers themselves are the individual components
+     * of the vector in that dimension. Therefore, the string representation, as given above, would yield a vector in the
+     * form:
+     *               1
+     *               2
+     *               3
+     *               4
+     *
+     * @see CAS.parser.VectorParser
+     * @param input The string representation of the vector.
+     * @return The vector object representing the vector in question.
+     */
+    public static Vector generateObject(String input) {
+        VectorParser parser = new VectorParser();
+        parser.parse(input);
+        double[] vector = parser.getRepresentation();
+
+        return new Vector(vector.length, vector);
     }
 }
