@@ -13,14 +13,14 @@ import java.util.HashMap;
  * See <a href="https://en.wikipedia.org/wiki/Polynomial">Polynomial</a>
  *
  * @author Luvai Cutlerywala
- * @version 1.1
+ * @version 1.2
  */
-public class Polynomial{
+public class Polynomial implements Operations<Polynomial>{
 
     private final HashMap<Integer, Double> coefficients;
     private final int maxDegree;
 
-    protected Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
+    private Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
         this.coefficients = coefficients;
         this.maxDegree = maxDegree;
     }
@@ -99,4 +99,18 @@ public class Polynomial{
         return new Polynomial(arr[arr.length - 1], map);
     }
 
+    @Override
+    public Polynomial add(Polynomial addend) {
+        return null;
+    }
+
+    @Override
+    public Polynomial subtract(Polynomial subtrahend) {
+        return null;
+    }
+
+    @Override
+    public Polynomial scalarMulitplication(double scalar) {
+        return null;
+    }
 }

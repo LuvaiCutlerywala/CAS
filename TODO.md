@@ -15,10 +15,10 @@
 | Approximating roots of polynomials                                        | No          |
 | Adding representation objects for matrices                                | Yes         |
 | Adding representation objects for vectors                                 | Yes         |
-| Defining vector and matrix algebra                                        | No          |
+| Defining vector and matrix arithmetic                                     | Yes         |
 | Defining other operations on vectors, e.g. outer product, inner product   | No          |
 | Defining other operations on matrices, e.g. trace, determinant, inversion | No          |
-|Defining polynomial algebra | No |
+| Defining polynomial algebra                                               | No          |
 
 
 ## Bugs to be fixed

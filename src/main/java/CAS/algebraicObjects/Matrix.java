@@ -3,6 +3,8 @@ package CAS.algebraicObjects;
 import CAS.parser.MatrixParser;
 import CAS.utils.Tuple;
 
+import java.util.Objects;
+
 /**
  * A class to represent the matrix. It supports methods for accessing matrices, however the actual logic of the
  * computation of matrices, including associated arithmetic and trace, determinant, transpose, and inverse are stored in
@@ -11,9 +13,9 @@ import CAS.utils.Tuple;
  * See <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">Matrix</a>
  *
  * @author Luvai Cutlerywala
- * @version 1.1
+ * @version 1.2
  */
-public class Matrix{
+public class Matrix implements Operations<Matrix>{
 
     private final Tuple<Integer, Integer> dim;
     private final double[][] matrix;
@@ -24,7 +26,7 @@ public class Matrix{
      * @param dim The dimensions of the matrix
      * @param matrix The matrix with values.
      */
-    protected Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
+    private Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
         if(dim.getA() <= 0 || dim.getB() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be 0.");
         }
@@ -37,12 +39,21 @@ public class Matrix{
      *
      * @param dim The dimensions of the matrix.
      */
-    protected Matrix(Tuple<Integer, Integer> dim){
+    private Matrix(Tuple<Integer, Integer> dim){
         if(dim.getB() <= 0 || dim.getA() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be zero.");
         }
         this.dim = dim;
         this.matrix = new double[dim.getA()][dim.getB()];
+    }
+
+    /**
+     * Returns the dimensionality of the matrix.
+     *
+     * @return The dimensions of a matrix.
+     */
+    public Tuple<Integer, Integer> getDim(){
+        return this.dim;
     }
 
     /**
@@ -93,4 +104,49 @@ public class Matrix{
         return new Matrix(new Tuple<>(matrixRepresentation.length, matrixRepresentation[0].length), matrixRepresentation);
     }
 
+    @Override
+    public Matrix add(Matrix addend) {
+        double[][] addendRepresentation = extractMatrixRepresentation(addend);
+        Matrix matrix = new Matrix(addend.getDim());
+        for(int i = 0; i < addendRepresentation.length; ++i){
+            for(int j = 0; j < addendRepresentation[0].length; ++j){
+                matrix.setMatrixElement(new Tuple<>(i + 1, j + 1), (addendRepresentation[i][j] + this.matrix[i][j]));
+            }
+        }
+
+        return matrix;
+    }
+
+    @Override
+    public Matrix subtract(Matrix subtrahend) {
+        double[][] subtrahendRepresentation = extractMatrixRepresentation(subtrahend);
+        Matrix matrix = new Matrix(subtrahend.getDim());
+        for(int i = 0; i < subtrahendRepresentation.length; ++i){
+            for(int j = 0; j < subtrahendRepresentation[0].length; ++j){
+                matrix.setMatrixElement(new Tuple<>(i + 1, j + 1), (this.matrix[i][j] - subtrahendRepresentation[i][j]));
+            }
+        }
+
+        return matrix;
+    }
+
+    @Override
+    public Matrix scalarMulitplication(double scalar) {
+        return null;
+    }
+
+    private double[][] extractMatrixRepresentation(Matrix matrix){
+        Tuple<Integer, Integer> dimensions = matrix.getDim();
+        if(!Objects.equals(dimensions.getA(), dim.getA()) || !Objects.equals(dimensions.getB(), dim.getB())){
+            throw new IllegalArgumentException("Matrix dimensions do not match.");
+        }
+        double[][] matrixRepresentation = new double[this.dim.getA()][this.dim.getB()];
+        for(int i = 0; i < matrixRepresentation.length; ++i){
+            for(int j = 0; j < matrixRepresentation[0].length; ++j){
+                matrixRepresentation[i][j] = matrix.getMatrixElement(new Tuple<>(i + 1, j + 1));
+            }
+        }
+
+        return matrixRepresentation;
+    }
 }

@@ -10,7 +10,7 @@ import CAS.parser.VectorParser;
  * See <a href="https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)">Vector</a>
  *
  * @author Luvai Cutlerywala
- * @version 1.2
+ * @version 1.3
  */
 public class Vector implements Operations<Vector>{
 
@@ -23,7 +23,7 @@ public class Vector implements Operations<Vector>{
      * @param dim The dimension of the vector.
      * @param vector The vector with values.
      */
-    protected Vector(int dim, double[] vector){
+    private Vector(int dim, double[] vector){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be zero.");
         }
@@ -36,7 +36,7 @@ public class Vector implements Operations<Vector>{
      *
      * @param dim The dimension of the vector.
      */
-    protected Vector(int dim){
+    private Vector(int dim){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be specified.");
         }
@@ -130,6 +130,11 @@ public class Vector implements Operations<Vector>{
         }
 
         return difference;
+    }
+
+    @Override
+    public Vector scalarMulitplication(double scalar) {
+        return null;
     }
 
     private double[] extractVectorRepresentation(Vector vector){
