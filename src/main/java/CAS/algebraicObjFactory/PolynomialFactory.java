@@ -1,4 +1,4 @@
-package CAS.algebraicObjects;
+package CAS.algebraicObjFactory;
 
 /**
  * The grammar defined for the string representation for a polynomial is as follows:

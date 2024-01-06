@@ -1,4 +1,4 @@
-package CAS.algebraicObjects;
+package CAS.algebraicObjFactory;
 
 /**
  * The grammar, as defined for the string representation of a matrix is:
@@ -15,4 +15,6 @@ package CAS.algebraicObjects;
  * @version 1.0
  */
 public class MatrixFactory {
+
+
 }

@@ -1,4 +1,4 @@
-package CAS.algebraicObjects;
+package CAS.algebraicObjFactory;
 
 /**
  * The grammar defined for the string representation of a vector is as follows:
