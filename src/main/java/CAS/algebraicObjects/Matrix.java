@@ -10,9 +10,8 @@ import CAS.utils.Tuple;
  *
  * See <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">Matrix</a>
  *
- * @see CAS.operations.MatrixOperations
  * @author Luvai Cutlerywala
- * @version 1.0
+ * @version 1.1
  */
 public class Matrix{
 
@@ -25,7 +24,7 @@ public class Matrix{
      * @param dim The dimensions of the matrix
      * @param matrix The matrix with values.
      */
-    public Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
+    protected Matrix(Tuple<Integer, Integer> dim, double[][] matrix){
         if(dim.getA() <= 0 || dim.getB() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be 0.");
         }
@@ -38,7 +37,7 @@ public class Matrix{
      *
      * @param dim The dimensions of the matrix.
      */
-    public Matrix(Tuple<Integer, Integer> dim){
+    protected Matrix(Tuple<Integer, Integer> dim){
         if(dim.getB() <= 0 || dim.getA() <= 0){
             throw new IllegalArgumentException("Matrix dimensions cannot be zero.");
         }

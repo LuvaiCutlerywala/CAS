@@ -9,11 +9,10 @@ import CAS.parser.VectorParser;
  *
  * See <a href="https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)">Vector</a>
  *
- * @see CAS.operations.VectorOperations
  * @author Luvai Cutlerywala
- * @version 1.0
+ * @version 1.2
  */
-public class Vector{
+public class Vector implements Operations<Vector>{
 
     private final int dim;
     private final double[] vector;
@@ -24,7 +23,7 @@ public class Vector{
      * @param dim The dimension of the vector.
      * @param vector The vector with values.
      */
-    private Vector(int dim, double[] vector){
+    protected Vector(int dim, double[] vector){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be zero.");
         }
@@ -37,12 +36,21 @@ public class Vector{
      *
      * @param dim The dimension of the vector.
      */
-    private Vector(int dim){
+    protected Vector(int dim){
         if(dim <= 0){
             throw new IllegalArgumentException("Vector dimensions cannot be specified.");
         }
         this.dim = dim;
         this.vector = new double[dim];
+    }
+
+    /**
+     * Returns the dimensionality of the vector.
+     *
+     * @return The dimension of the vector.
+     */
+    public int getDim(){
+        return this.dim;
     }
 
     /**
@@ -94,5 +102,41 @@ public class Vector{
         double[] vector = parser.getRepresentation();
 
         return new Vector(vector.length, vector);
+    }
+
+    @Override
+    public Vector add(Vector addend) {
+        if(this.dim != addend.getDim()){
+            throw new IllegalArgumentException("Vector dimensions do not match.");
+        }
+        double[] addendRepresentation = extractVectorRepresentation(addend);
+        Vector vector = new Vector(this.dim);
+        for(int i = 0; i < this.vector.length; ++i){
+            vector.setComponent(i + 1, this.vector[i] + addendRepresentation[i]);
+        }
+
+        return vector;
+    }
+
+    @Override
+    public Vector subtract(Vector subtrahend) {
+        if(this.dim != subtrahend.getDim()){
+            throw new IllegalArgumentException("Vector dimensions do not match.");
+        }
+        double[] subtrahendRepresentation = extractVectorRepresentation(subtrahend);
+        Vector difference = new Vector(this.dim);
+        for(int i = 0; i < this.vector.length; ++i){
+            difference.setComponent(i + 1, this.vector[i] - subtrahendRepresentation[i]);
+        }
+
+        return difference;
+    }
+
+    private double[] extractVectorRepresentation(Vector vector){
+        double[] representation = new double[vector.getDim()];
+        for(int i = 0; i < representation.length; ++i){
+            representation[i] = vector.getComponent(i);
+        }
+        return representation;
     }
 }

@@ -24,5 +24,5 @@
 ## Bugs to be fixed
 
 | Section | File | Bug Report | Fixed |
-| --- | --- | --- | --- |
-| algebraicObjFactory | AlgebraicObjectFactory.java | 'AlgebraicObjFactory' is abstract; cannot be instantiated | No |
+| --- | --- | --- |---|
+| algebraicObjFactory | AlgebraicObjectFactory.java | 'AlgebraicObjFactory' is abstract; cannot be instantiated | Yes |

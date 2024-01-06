@@ -12,16 +12,15 @@ import java.util.HashMap;
  *
  * See <a href="https://en.wikipedia.org/wiki/Polynomial">Polynomial</a>
  *
- * @see CAS.operations.PolynomialOperations
  * @author Luvai Cutlerywala
- * @version 1.0
+ * @version 1.1
  */
 public class Polynomial{
 
     private final HashMap<Integer, Double> coefficients;
     private final int maxDegree;
 
-    private Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
+    protected Polynomial(int maxDegree, HashMap<Integer, Double> coefficients){
         this.coefficients = coefficients;
         this.maxDegree = maxDegree;
     }
