@@ -6,6 +6,6 @@ public interface Operations<T> {
 
     T subtract(T subtrahend);
 
-    T scalarMulitplication(double scalar);
+    T scalarMultiplication(double scalar);
 
 }

@@ -133,14 +133,19 @@ public class Vector implements Operations<Vector>{
     }
 
     @Override
-    public Vector scalarMulitplication(double scalar) {
-        return null;
+    public Vector scalarMultiplication(double scalar) {
+        Vector vector = new Vector(this.dim);
+        for(int i = 0; i < this.vector.length; ++i){
+            vector.setComponent(i + 1,scalar * this.vector[i]);
+        }
+
+        return vector;
     }
 
     private double[] extractVectorRepresentation(Vector vector){
         double[] representation = new double[vector.getDim()];
         for(int i = 0; i < representation.length; ++i){
-            representation[i] = vector.getComponent(i);
+            representation[i] = vector.getComponent(i + 1);
         }
         return representation;
     }

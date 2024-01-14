@@ -131,8 +131,15 @@ public class Matrix implements Operations<Matrix>{
     }
 
     @Override
-    public Matrix scalarMulitplication(double scalar) {
-        return null;
+    public Matrix scalarMultiplication(double scalar) {
+        Matrix matrix = new Matrix(new Tuple<>(this.matrix.length, this.matrix[0].length));
+        for(int i = 0; i < this.matrix.length; ++i){
+            for(int j = 0; j < this.matrix[0].length; ++j){
+                matrix.setMatrixElement(new Tuple<>(i + 1, j + 1), scalar * this.matrix[i][j]);
+            }
+        }
+
+        return matrix;
     }
 
     private double[][] extractMatrixRepresentation(Matrix matrix){

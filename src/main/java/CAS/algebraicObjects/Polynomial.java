@@ -110,7 +110,7 @@ public class Polynomial implements Operations<Polynomial>{
     }
 
     @Override
-    public Polynomial scalarMulitplication(double scalar) {
+    public Polynomial scalarMultiplication(double scalar) {
         return null;
     }
 }
