@@ -4,6 +4,7 @@ import CAS.parser.PolynomialParser;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * A class to represent the polynomial. It supports methods for accessing polynomials, however the actual logic of the
@@ -111,6 +112,12 @@ public class Polynomial implements Operations<Polynomial>{
 
     @Override
     public Polynomial scalarMultiplication(double scalar) {
-        return null;
+        Polynomial polynomial = new Polynomial(this.maxDegree, this.coefficients);
+        Set<Integer> keySet = this.coefficients.keySet();
+        for(Integer key: keySet){
+            polynomial.setCoefficient(key, polynomial.getCoefficient(key) * scalar);
+        }
+
+        return polynomial;
     }
 }
